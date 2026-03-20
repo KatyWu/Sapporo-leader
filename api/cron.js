@@ -47,17 +47,9 @@ async function sendLineMessage(message) {
   }
 }
 
-function getJSTNow() {
-  const now = new Date();
-  // 轉成 JST（UTC+9）
-  const jstOffset = 9 * 60;
-  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  return new Date(utc + jstOffset * 60000);
-}
-
 export default async function handler(req, res) {
   try {
-    const jstNow = getJSTNow();
+    const nowMs = Date.now();
     const notifications = await getScheduledNotifications();
 
     for (const page of notifications) {
@@ -66,10 +58,11 @@ export default async function handler(req, res) {
       const sendTimeRaw = props['發送時間']?.date?.start;
       if (!sendTimeRaw) continue;
 
-      const sendTime = new Date(sendTimeRaw);
+      // new Date() 會正確解析 Notion 回傳的 ISO 8601（含 +09:00 時區）
+      const sendTimeMs = new Date(sendTimeRaw).getTime();
 
       // 比對時間：發送時間在「現在」到「現在 +15 分鐘」之間就發送
-      const diffMs = sendTime.getTime() - jstNow.getTime();
+      const diffMs = sendTimeMs - nowMs;
       const diffMin = diffMs / 1000 / 60;
 
       if (diffMin >= 0 && diffMin < 15) {
