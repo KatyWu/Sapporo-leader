@@ -65,7 +65,7 @@ export default async function handler(req, res) {
       const diffMs = sendTimeMs - nowMs;
       const diffMin = diffMs / 1000 / 60;
 
-      if (diffMin >= 0 && diffMin < 1) {
+      if (diffMin >= 0 && diffMin < 2) {
         const title = props['通知標題']?.title?.[0]?.plain_text || '';
         const content = props['訊息內容']?.rich_text?.[0]?.plain_text || '';
         const link = props['Notion 連結']?.url || '';
