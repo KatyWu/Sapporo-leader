@@ -1,0 +1,8 @@
+{
+  "name": "hokkaido-linebot",
+  "version": "1.0.0",
+  "dependencies": {
+    "@line/bot-sdk": "^9.3.0",
+    "@notionhq/client": "^2.2.15"
+  }
+}
