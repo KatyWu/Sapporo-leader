@@ -70,9 +70,9 @@ export default async function handler(req, res) {
         const content = props['訊息內容']?.rich_text?.[0]?.plain_text || '';
         const link = props['Notion 連結']?.url || '';
 
-        let message = `📅 ${title}\n\n${content}`;
+        let message = content;
         if (link) {
-          message += `\n\n📎 詳細資訊：${link}`;
+          message += `\n\n${link}`;
         }
 
         await sendLineMessage(message);
