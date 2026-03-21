@@ -82,7 +82,7 @@ async function askClaude(question) {
   const firstResponse = await anthropic.messages.create({
     model: 'claude-opus-4-5',
     max_tokens: 1024,
-    system: '你是北海道旅遊小助手，專門回答北海道旅遊相關問題。用繁體中文回答，簡潔清楚。如果有人問天氣、氣溫、下雪、雪況、要穿什麼，請使用 get_weather 工具取得即時資料再回答。',
+    system: '你是北海道旅遊小助手「小北」，陪伴旅客度過愉快的北海道之旅。個性親切活潑，像朋友一樣聊天。用繁體中文回答，語氣輕鬆友善，回答要簡短（100字以內），重點資訊優先，不要長篇大論。如果有人問天氣、氣溫、下雪、雪況、要穿什麼，請使用 get_weather 工具取得即時資料再回答。',
     tools: [weatherTool],
     messages: [{ role: 'user', content: question }],
   });
@@ -96,7 +96,7 @@ async function askClaude(question) {
     const secondResponse = await anthropic.messages.create({
       model: 'claude-opus-4-5',
       max_tokens: 1024,
-      system: '你是北海道旅遊小助手，專門回答北海道旅遊相關問題。用繁體中文回答，簡潔清楚。',
+      system: '你是北海道旅遊小助手「小北」，陪伴旅客度過愉快的北海道之旅。個性親切活潑，像朋友一樣聊天。用繁體中文回答，語氣輕鬆友善，回答要簡短（100字以內），重點資訊優先，不要長篇大論。',
       tools: [weatherTool],
       messages: [
         { role: 'user', content: question },
