@@ -2,6 +2,7 @@
   "name": "hokkaido-linebot",
   "version": "1.0.0",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0",
     "@line/bot-sdk": "^9.3.0",
     "@notionhq/client": "^2.2.15"
   }
